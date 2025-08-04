@@ -679,6 +679,9 @@
                             <span>Always</span>
                         </div>
                     </div>
+
+                    <!-- Questions 11-33 -->
+                    <div id="additional-questions"></div>
                 </div>
 
                 <button type="submit" class="submit-btn">Submit Assessment</button>
@@ -692,6 +695,30 @@
                     <span id="totalScore"></span><span class="score-fraction">/132</span>
                 </div>
             </div>
+            
+            <!-- Score Analysis Table -->
+            <div class="score-analysis">
+                <h2>Analyzing the Score on the Self-Assessment</h2>
+                <div class="score-ranges">
+                    <div class="score-range-item" id="range-116-132">
+                        <span class="range">116-132:</span>
+                        <span class="description">Strong teacher leader with well-developed leadership skills</span>
+                    </div>
+                    <div class="score-range-item" id="range-95-115">
+                        <span class="range">95-115:</span>
+                        <span class="description">Developing teacher leader with solid foundation and areas for growth</span>
+                    </div>
+                    <div class="score-range-item" id="range-70-94">
+                        <span class="range">70-94:</span>
+                        <span class="description">Emerging teacher leader with potential for significant development</span>
+                    </div>
+                    <div class="score-range-item" id="range-below-70">
+                        <span class="range">Below 70:</span>
+                        <span class="description">Beginning teacher leader who would benefit from focused professional development</span>
+                    </div>
+                </div>
+            </div>
+            
             <div id="ratingCategory"></div>
             <button class="download-btn" onclick="downloadData()">Download Results as CSV</button>
             <button class="submit-btn" onclick="resetForm()">Take Assessment Again</button>
@@ -705,6 +732,7 @@
         let maxTotalScore = totalQuestions * maxScorePerQuestion * 3.3; // 132
 
         // Add more questions to reach 33 questions total (132 / 4 = 33)
+        // Additional questions 11-33
         const additionalQuestions = [
             "I create and maintain professional learning communities within my school.",
             "I mentor new teachers and support their professional growth.",
@@ -731,9 +759,10 @@
             "I coordinate with support staff to meet all students' needs."
         ];
 
-        // Function to add additional questions to the form
+        // Add additional questions to the form
         function addAdditionalQuestions() {
-            const formSection = document.querySelector('.form-section:last-child');
+            const additionalContainer = document.getElementById('additional-questions');
+            if (!additionalContainer) return;
             
             additionalQuestions.forEach((question, index) => {
                 const questionNum = index + 11;
@@ -768,12 +797,14 @@
                         <span>Always</span>
                     </div>
                 `;
-                formSection.insertBefore(questionDiv, document.querySelector('.submit-btn'));
+                additionalContainer.appendChild(questionDiv);
             });
         }
 
         // Add additional questions when page loads
-        addAdditionalQuestions();
+        document.addEventListener('DOMContentLoaded', function() {
+            addAdditionalQuestions();
+        });
 
         document.getElementById('assessmentForm').addEventListener('submit', function(e) {
             e.preventDefault();
