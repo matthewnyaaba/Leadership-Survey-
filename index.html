@@ -819,6 +819,9 @@
             
             responses.push(responseData);
             
+            // Send data to Google Sheets
+            sendToGoogleSheets(responseData);
+            
             // Show success message and results
             showSuccessMessage(name);
             showResults(totalScore);
