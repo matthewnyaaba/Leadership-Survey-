@@ -248,6 +248,61 @@
             color: #666;
         }
 
+        .score-analysis {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 16px;
+            margin: 30px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .score-analysis h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .score-ranges {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .score-range-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .score-range-item.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .score-range-item .range {
+            font-weight: bold;
+            font-size: 1.1em;
+            min-width: 100px;
+            margin-right: 15px;
+        }
+
+        .score-range-item .description {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .score-range-item.active .range {
+            color: white;
+        }
+
         .rating-category {
             padding: 30px;
             border-radius: 16px;
@@ -327,6 +382,77 @@
             margin-bottom: 20px;
             color: #666;
         }
+
+        .success-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideInRight 0.5s ease-out;
+            font-size: 1.1em;
+            max-width: 400px;
+        }
+
+        .score-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1001;
+            animation: bounceIn 0.6s ease-out;
+            font-size: 1.2em;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.3);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+            70% {
+                transform: translateX(-50%) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -377,311 +503,11 @@
 
                 <div class="form-section">
                     <div class="progress-info">
-                        <p>Complete all 10 questions to receive your personalized leadership assessment</p>
+                        <p>Complete all 33 questions to receive your personalized leadership assessment</p>
                     </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">1.</span> I actively seek out and implement innovative teaching strategies to improve student learning outcomes.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q1_0" name="q1" value="0" required>
-                                <label for="q1_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q1_1" name="q1" value="1">
-                                <label for="q1_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q1_2" name="q1" value="2">
-                                <label for="q1_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q1_3" name="q1" value="3">
-                                <label for="q1_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q1_4" name="q1" value="4">
-                                <label for="q1_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
+                    <div id="questions-container">
+                        <!-- Questions will be added here by JavaScript -->
                     </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">2.</span> I use data to inform my instructional decisions and adjust my teaching methods accordingly.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q2_0" name="q2" value="0" required>
-                                <label for="q2_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q2_1" name="q2" value="1">
-                                <label for="q2_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q2_2" name="q2" value="2">
-                                <label for="q2_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q2_3" name="q2" value="3">
-                                <label for="q2_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q2_4" name="q2" value="4">
-                                <label for="q2_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">3.</span> I model effective teaching practices for my colleagues through demonstration lessons or peer observations.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q3_0" name="q3" value="0" required>
-                                <label for="q3_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q3_1" name="q3" value="1">
-                                <label for="q3_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q3_2" name="q3" value="2">
-                                <label for="q3_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q3_3" name="q3" value="3">
-                                <label for="q3_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q3_4" name="q3" value="4">
-                                <label for="q3_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">4.</span> I advocate for evidence-based practices and share research findings with my team.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q4_0" name="q4" value="0" required>
-                                <label for="q4_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q4_1" name="q4" value="1">
-                                <label for="q4_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q4_2" name="q4" value="2">
-                                <label for="q4_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q4_3" name="q4" value="3">
-                                <label for="q4_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q4_4" name="q4" value="4">
-                                <label for="q4_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">5.</span> I design and implement assessments that effectively measure student learning and provide actionable feedback.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q5_0" name="q5" value="0" required>
-                                <label for="q5_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q5_1" name="q5" value="1">
-                                <label for="q5_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q5_2" name="q5" value="2">
-                                <label for="q5_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q5_3" name="q5" value="3">
-                                <label for="q5_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q5_4" name="q5" value="4">
-                                <label for="q5_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">6.</span> I differentiate instruction to meet the diverse learning needs of all students in my classroom.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q6_0" name="q6" value="0" required>
-                                <label for="q6_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q6_1" name="q6" value="1">
-                                <label for="q6_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q6_2" name="q6" value="2">
-                                <label for="q6_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q6_3" name="q6" value="3">
-                                <label for="q6_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q6_4" name="q6" value="4">
-                                <label for="q6_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">7.</span> I integrate technology purposefully to enhance student learning and engagement.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q7_0" name="q7" value="0" required>
-                                <label for="q7_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q7_1" name="q7" value="1">
-                                <label for="q7_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q7_2" name="q7" value="2">
-                                <label for="q7_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q7_3" name="q7" value="3">
-                                <label for="q7_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q7_4" name="q7" value="4">
-                                <label for="q7_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">8.</span> I analyze student work collaboratively with colleagues to improve instructional practices.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q8_0" name="q8" value="0" required>
-                                <label for="q8_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q8_1" name="q8" value="1">
-                                <label for="q8_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q8_2" name="q8" value="2">
-                                <label for="q8_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q8_3" name="q8" value="3">
-                                <label for="q8_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q8_4" name="q8" value="4">
-                                <label for="q8_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">9.</span> I lead discussions about curriculum alignment, pacing, and instructional strategies with my team.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q9_0" name="q9" value="0" required>
-                                <label for="q9_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q9_1" name="q9" value="1">
-                                <label for="q9_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q9_2" name="q9" value="2">
-                                <label for="q9_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q9_3" name="q9" value="3">
-                                <label for="q9_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q9_4" name="q9" value="4">
-                                <label for="q9_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <div class="question">
-                        <p class="question-text"><span class="question-number">10.</span> I provide specific, actionable feedback to colleagues about their instructional practices.</p>
-                        <div class="rating-scale">
-                            <div class="rating-option">
-                                <input type="radio" id="q10_0" name="q10" value="0" required>
-                                <label for="q10_0">0</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q10_1" name="q10" value="1">
-                                <label for="q10_1">1</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q10_2" name="q10" value="2">
-                                <label for="q10_2">2</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q10_3" name="q10" value="3">
-                                <label for="q10_3">3</label>
-                            </div>
-                            <div class="rating-option">
-                                <input type="radio" id="q10_4" name="q10" value="4">
-                                <label for="q10_4">4</label>
-                            </div>
-                        </div>
-                        <div class="scale-labels">
-                            <span>Never</span>
-                            <span>Always</span>
-                        </div>
-                    </div>
-
-                    <!-- Questions 11-33 -->
-                    <div id="additional-questions"></div>
                 </div>
 
                 <button type="submit" class="submit-btn">Submit Assessment</button>
@@ -726,14 +552,18 @@
     </div>
 
     <script>
-        let responses = [];
-        let totalQuestions = 10;
-        let maxScorePerQuestion = 4;
-        let maxTotalScore = totalQuestions * maxScorePerQuestion * 3.3; // 132
-
-        // Add more questions to reach 33 questions total (132 / 4 = 33)
-        // Additional questions 11-33
-        const additionalQuestions = [
+        // All 33 survey questions
+        const allQuestions = [
+            "I actively seek out and implement innovative teaching strategies to improve student learning outcomes.",
+            "I use data to inform my instructional decisions and adjust my teaching methods accordingly.",
+            "I model effective teaching practices for my colleagues through demonstration lessons or peer observations.",
+            "I advocate for evidence-based practices and share research findings with my team.",
+            "I design and implement assessments that effectively measure student learning and provide actionable feedback.",
+            "I differentiate instruction to meet the diverse learning needs of all students in my classroom.",
+            "I integrate technology purposefully to enhance student learning and engagement.",
+            "I analyze student work collaboratively with colleagues to improve instructional practices.",
+            "I lead discussions about curriculum alignment, pacing, and instructional strategies with my team.",
+            "I provide specific, actionable feedback to colleagues about their instructional practices.",
             "I create and maintain professional learning communities within my school.",
             "I mentor new teachers and support their professional growth.",
             "I participate in educational research to improve teaching practices.",
@@ -759,13 +589,19 @@
             "I coordinate with support staff to meet all students' needs."
         ];
 
-        // Add additional questions to the form
-        function addAdditionalQuestions() {
-            const additionalContainer = document.getElementById('additional-questions');
-            if (!additionalContainer) return;
+        let responses = [];
+
+        // Generate all questions when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            generateQuestions();
+            setupFormHandler();
+        });
+
+        function generateQuestions() {
+            const container = document.getElementById('questions-container');
             
-            additionalQuestions.forEach((question, index) => {
-                const questionNum = index + 11;
+            allQuestions.forEach((question, index) => {
+                const questionNum = index + 1;
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question';
                 questionDiv.innerHTML = `
@@ -797,16 +633,16 @@
                         <span>Always</span>
                     </div>
                 `;
-                additionalContainer.appendChild(questionDiv);
+                container.appendChild(questionDiv);
             });
         }
 
-        // Add additional questions when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            addAdditionalQuestions();
-        });
+        function setupFormHandler() {
+            const form = document.getElementById('assessmentForm');
+            form.addEventListener('submit', handleSubmit);
+        }
 
-        document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+        function handleSubmit(e) {
             e.preventDefault();
             
             // Clear previous errors
@@ -829,13 +665,15 @@
             // Calculate total score
             let totalScore = 0;
             const answers = {};
-            const totalQuestions = 33; // All questions
             
-            for (let i = 1; i <= totalQuestions; i++) {
+            for (let i = 1; i <= 33; i++) {
                 const selectedValue = document.querySelector(`input[name="q${i}"]:checked`);
                 if (selectedValue) {
                     answers[`q${i}`] = parseInt(selectedValue.value);
                     totalScore += parseInt(selectedValue.value);
+                } else {
+                    alert(`Please answer question ${i}`);
+                    return;
                 }
             }
             
@@ -850,32 +688,22 @@
             
             responses.push(responseData);
             
-            // Send data to Google Sheets
-            sendToGoogleSheets(responseData);
-            
-            // Show success message and results
+            // Show success message and animate to results
             showSuccessMessage(name);
-            showResults(totalScore);
-        });
+            
+            // Animate score calculation
+            setTimeout(() => {
+                showResults(totalScore);
+            }, 500);
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
 
         function showSuccessMessage(name) {
-            // Create success notification
             const successDiv = document.createElement('div');
-            successDiv.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #28a745;
-                color: white;
-                padding: 20px 30px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                z-index: 1000;
-                animation: slideInRight 0.5s ease-out;
-                font-size: 1.1em;
-                max-width: 400px;
-            `;
-            
+            successDiv.className = 'success-notification';
             successDiv.innerHTML = `
                 <strong>✓ Assessment Submitted Successfully!</strong><br>
                 Thank you, ${name}. Your responses have been recorded.<br>
@@ -884,35 +712,177 @@
             
             document.body.appendChild(successDiv);
             
-            // Remove after 4 seconds
             setTimeout(() => {
                 successDiv.style.animation = 'slideOutRight 0.5s ease-in';
                 setTimeout(() => successDiv.remove(), 500);
             }, 4000);
         }
 
-        // Add animations to CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
+        function showResults(score) {
+            // Hide form and show results
+            document.getElementById('survey-form').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+            
+            // Animate score counting
+            let currentScore = 0;
+            const scoreElement = document.getElementById('totalScore');
+            const increment = Math.ceil(score / 50);
+            
+            const countInterval = setInterval(() => {
+                currentScore += increment;
+                if (currentScore >= score) {
+                    currentScore = score;
+                    clearInterval(countInterval);
+                    
+                    // Highlight appropriate range
+                    highlightScoreRange(score);
+                    
+                    // Show final notification
+                    showScoreNotification(score);
                 }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
+                scoreElement.textContent = currentScore;
+            }, 30);
+            
+            // Determine and show category
+            let category, title, description;
+            
+            if (score >= 116) {
+                category = 'strong-leader';
+                title = 'Strong Teacher Leader';
+                description = 'You demonstrate exceptional leadership skills! Your score indicates you have well-developed leadership abilities across all areas. You consistently implement innovative strategies, use data-driven decisions, and actively support your colleagues\' professional growth.';
+            } else if (score >= 95) {
+                category = 'developing-leader';
+                title = 'Developing Teacher Leader';
+                description = 'You are a developing teacher leader with a solid foundation! Your score shows you have strong skills in many areas with opportunities for continued growth. Consider expanding your leadership influence by mentoring colleagues or leading professional development initiatives.';
+            } else if (score >= 70) {
+                category = 'emerging-leader';
+                title = 'Emerging Teacher Leader';
+                description = 'You are an emerging teacher leader with significant potential for development! Focus on strengthening your data-driven instruction, increasing collaboration with colleagues, and seeking opportunities to share your growing expertise.';
+            } else {
+                category = 'beginning-leader';
+                title = 'Beginning Teacher Leader';
+                description = 'You are at the beginning of your teacher leadership journey! This is an exciting opportunity for focused professional development. Start by identifying one or two areas where you feel most comfortable and gradually expand your leadership practices.';
             }
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
+            
+            const categoryDiv = document.getElementById('ratingCategory');
+            categoryDiv.className = `rating-category ${category}`;
+            categoryDiv.innerHTML = `
+                <h2 class="category-title">${title}</h2>
+                <p class="category-description">${description}</p>
+            `;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function highlightScoreRange(score) {
+            setTimeout(() => {
+                if (score >= 116) {
+                    document.getElementById('range-116-132').classList.add('active');
+                } else if (score >= 95) {
+                    document.getElementById('range-95-115').classList.add('active');
+                } else if (score >= 70) {
+                    document.getElementById('range-70-94').classList.add('active');
+                } else {
+                    document.getElementById('range-below-70').classList.add('active');
                 }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
+            }, 1500);
+        }
+
+        function showScoreNotification(score) {
+            setTimeout(() => {
+                const notification = document.createElement('div');
+                notification.className = 'score-notification';
+                
+                let category;
+                if (score >= 116) category = 'Strong Teacher Leader';
+                else if (score >= 95) category = 'Developing Teacher Leader';
+                else if (score >= 70) category = 'Emerging Teacher Leader';
+                else category = 'Beginning Teacher Leader';
+                
+                notification.innerHTML = `
+                    <strong style="font-size: 1.5em;">📊 Assessment Complete!</strong><br>
+                    <div style="margin-top: 10px;">Your Leadership Score: <strong style="font-size: 2em;">${score}/132</strong></div>
+                    <div style="margin-top: 5px; font-size: 0.9em;">Category: ${category}</div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transition = 'opacity 0.5s ease-in';
+                    setTimeout(() => notification.remove(), 500);
+                }, 5000);
+            }, 2000);
+        }
+
+        function downloadData() {
+            if (responses.length === 0) {
+                alert('No data to download');
+                return;
             }
-        `;
-        document.head.appendChild(style);
+            
+            const headers = ['Timestamp', 'Name', 'Email'];
+            for (let i = 1; i <= 33; i++) {
+                headers.push(`Q${i}`);
+            }
+            headers.push('Total Score');
+            
+            const csvContent = [
+                headers.join(','),
+                ...responses.map(r => {
+                    const row = [r.timestamp, `"${r.name}"`, r.email];
+                    for (let i = 1; i <= 33; i++) {
+                        row.push(r[`q${i}`] || 0);
+                    }
+                    row.push(r.totalScore);
+                    return row.join(',');
+                })
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `teacher_assessment_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        function resetForm() {
+            document.getElementById('assessmentForm').reset();
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('survey-form').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Optional Google Sheets Integration
+        function sendToGoogleSheets(data) {
+            // Replace with your Google Apps Script Web App URL
+            const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+            
+            if (GOOGLE_SCRIPT_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')) {
+                return;
+            }
+            
+            const formData = new FormData();
+            Object.keys(data).forEach(key => {
+                formData.append(key, data[key]);
+            });
+            
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Data saved to Google Sheets:', result);
+            })
+            .catch(error => {
+                console.error('Error saving to Google Sheets:', error);
+            });
+        }
+    </script>
+</body>
+</html>
