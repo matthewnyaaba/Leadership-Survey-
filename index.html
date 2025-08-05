@@ -61,8 +61,42 @@
             border-left: 4px solid #667eea;
         }
 
+        .section-header {
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.2);
+        }
+
+        .section-score {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+
+        .section-score h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .rating-instructions h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
         .rating-instructions h3 {
             color: #333;
+            margin-top: 25px;
             margin-bottom: 15px;
         }
 
@@ -462,7 +496,11 @@
             <p class="subtitle">Evaluate your teaching practices and leadership skills</p>
             
             <div class="rating-instructions">
-                <h3>Rate Each Statement Using the Scale Below:</h3>
+                <h2>Directions for the Self-assessment</h2>
+                
+                <p style="margin-bottom: 20px;">This self-assessment consists of five sections. Within each section, there are a series of questions in which you are asked to rate yourself on a scale of 0 to 4. Here is the scale.</p>
+                
+                <h3>I. Rate Each Statement Using the Scale Below:</h3>
                 <div class="rating-scale-info">
                     <div class="scale-item">
                         <span class="scale-value">4</span>
@@ -485,6 +523,29 @@
                         <span><strong>Never</strong> - This does not describe me</span>
                     </div>
                 </div>
+                
+                <h3>II. After Completing the Self-assessment</h3>
+                <p>After completing the self-assessment, tally your score (see directions at the end of this document) and take the time to review and reflect on your responses as a way to target your own goals while working through the content of this course.</p>
+                
+                <h3>III. Scoring</h3>
+                <p>After completing the self-assessment, your score will be automatically calculated within and across the sections (e.g., Instructional Leadership, Collaboration and Teamwork, etc.). Your survey and its results will be automatically sent to your UGA email.</p>
+                
+                <h3>IV. Analyzing the Score on the Self-Assessment</h3>
+                <p>Once you receive the results of your self-assessment, examine the range of your scored results to see where you currently are related to your self-reported engagement in the work of being a teacher leader.</p>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                    <strong>Score Range:</strong>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li>• 116-132: Strong teacher leader with well-developed leadership skills</li>
+                        <li>• 95-115: Developing teacher leader with solid foundation and areas for growth</li>
+                        <li>• 70-94: Emerging teacher leader with potential for significant development</li>
+                        <li>• Below 70: Beginning teacher leader who would benefit from focused professional development</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Total Score: ___/132</strong></p>
+                </div>
+                
+                <h3>V. Time to Reflect on the Results of the Self-assessment</h3>
+                <p>After completing the self-assessment, take the time to review these questions and to reflect about your responses as a way to target your own goals while working through the content of this course and in all probability future courses. Please keep the results of this self-assessment for future use in this course (See Assignment Number 5).</p>
             </div>
             
             <form id="assessmentForm">
@@ -600,41 +661,85 @@
         function generateQuestions() {
             const container = document.getElementById('questions-container');
             
-            allQuestions.forEach((question, index) => {
-                const questionNum = index + 1;
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <p class="question-text"><span class="question-number">${questionNum}.</span> ${question}</p>
-                    <div class="rating-scale">
-                        <div class="rating-option">
-                            <input type="radio" id="q${questionNum}_0" name="q${questionNum}" value="0" required>
-                            <label for="q${questionNum}_0">0</label>
-                        </div>
-                        <div class="rating-option">
-                            <input type="radio" id="q${questionNum}_1" name="q${questionNum}" value="1">
-                            <label for="q${questionNum}_1">1</label>
-                        </div>
-                        <div class="rating-option">
-                            <input type="radio" id="q${questionNum}_2" name="q${questionNum}" value="2">
-                            <label for="q${questionNum}_2">2</label>
-                        </div>
-                        <div class="rating-option">
-                            <input type="radio" id="q${questionNum}_3" name="q${questionNum}" value="3">
-                            <label for="q${questionNum}_3">3</label>
-                        </div>
-                        <div class="rating-option">
-                            <input type="radio" id="q${questionNum}_4" name="q${questionNum}" value="4">
-                            <label for="q${questionNum}_4">4</label>
-                        </div>
+            // Section 1: Instructional Leadership (Questions 1-11)
+            const section1 = document.createElement('div');
+            section1.innerHTML = '<div class="section-header">Section 1: Instructional Leadership</div>';
+            container.appendChild(section1);
+            
+            for (let i = 0; i < 11; i++) {
+                section1.appendChild(createQuestion(allQuestions[i], i + 1));
+            }
+            
+            // Section 2: Collaboration and Teamwork (Questions 12-21)
+            const section2 = document.createElement('div');
+            section2.innerHTML = '<div class="section-header">Section 2: Collaboration and Teamwork</div>';
+            container.appendChild(section2);
+            
+            for (let i = 11; i < 21; i++) {
+                section2.appendChild(createQuestion(allQuestions[i], i + 1));
+            }
+            
+            // Section 3: Communication and Influence (Questions 22-25)
+            const section3 = document.createElement('div');
+            section3.innerHTML = '<div class="section-header">Section 3: Communication and Influence</div>';
+            container.appendChild(section3);
+            
+            for (let i = 21; i < 25; i++) {
+                section3.appendChild(createQuestion(allQuestions[i], i + 1));
+            }
+            
+            // Section 4: Professional Growth and Learning (Questions 26-29)
+            const section4 = document.createElement('div');
+            section4.innerHTML = '<div class="section-header">Section 4: Professional Growth and Learning</div>';
+            container.appendChild(section4);
+            
+            for (let i = 25; i < 29; i++) {
+                section4.appendChild(createQuestion(allQuestions[i], i + 1));
+            }
+            
+            // Section 5: Mentoring, Coaching, and Supporting Others (Questions 30-33)
+            const section5 = document.createElement('div');
+            section5.innerHTML = '<div class="section-header">Section 5: Mentoring, Coaching, and Supporting Others</div>';
+            container.appendChild(section5);
+            
+            for (let i = 29; i < 33; i++) {
+                section5.appendChild(createQuestion(allQuestions[i], i + 1));
+            }
+        }
+
+        function createQuestion(questionText, questionNum) {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `
+                <p class="question-text"><span class="question-number">${questionNum}.</span> ${questionText}</p>
+                <div class="rating-scale">
+                    <div class="rating-option">
+                        <input type="radio" id="q${questionNum}_0" name="q${questionNum}" value="0" required>
+                        <label for="q${questionNum}_0">0</label>
                     </div>
-                    <div class="scale-labels">
-                        <span>Never</span>
-                        <span>Always</span>
+                    <div class="rating-option">
+                        <input type="radio" id="q${questionNum}_1" name="q${questionNum}" value="1">
+                        <label for="q${questionNum}_1">1</label>
                     </div>
-                `;
-                container.appendChild(questionDiv);
-            });
+                    <div class="rating-option">
+                        <input type="radio" id="q${questionNum}_2" name="q${questionNum}" value="2">
+                        <label for="q${questionNum}_2">2</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="q${questionNum}_3" name="q${questionNum}" value="3">
+                        <label for="q${questionNum}_3">3</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="q${questionNum}_4" name="q${questionNum}" value="4">
+                        <label for="q${questionNum}_4">4</label>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>Never</span>
+                    <span>Always</span>
+                </div>
+            `;
+            return questionDiv;
         }
 
         function setupFormHandler() {
@@ -666,11 +771,28 @@
             let totalScore = 0;
             const answers = {};
             
+            // Calculate section scores
+            const sectionScores = {
+                'Instructional Leadership': 0,
+                'Collaboration and Teamwork': 0,
+                'Communication and Influence': 0,
+                'Professional Growth and Learning': 0,
+                'Mentoring, Coaching, and Supporting Others': 0
+            };
+            
             for (let i = 1; i <= 33; i++) {
                 const selectedValue = document.querySelector(`input[name="q${i}"]:checked`);
                 if (selectedValue) {
-                    answers[`q${i}`] = parseInt(selectedValue.value);
-                    totalScore += parseInt(selectedValue.value);
+                    const score = parseInt(selectedValue.value);
+                    answers[`q${i}`] = score;
+                    totalScore += score;
+                    
+                    // Add to section scores
+                    if (i <= 11) sectionScores['Instructional Leadership'] += score;
+                    else if (i <= 21) sectionScores['Collaboration and Teamwork'] += score;
+                    else if (i <= 25) sectionScores['Communication and Influence'] += score;
+                    else if (i <= 29) sectionScores['Professional Growth and Learning'] += score;
+                    else sectionScores['Mentoring, Coaching, and Supporting Others'] += score;
                 } else {
                     alert(`Please answer question ${i}`);
                     return;
@@ -683,17 +805,21 @@
                 name: name,
                 email: email,
                 ...answers,
-                totalScore: totalScore
+                totalScore: totalScore,
+                ...sectionScores
             };
             
             responses.push(responseData);
+            
+            // Send to Google Sheets if configured
+            sendToGoogleSheets(responseData);
             
             // Show success message and animate to results
             showSuccessMessage(name);
             
             // Animate score calculation
             setTimeout(() => {
-                showResults(totalScore);
+                showResults(totalScore, sectionScores);
             }, 500);
         }
 
@@ -718,7 +844,7 @@
             }, 4000);
         }
 
-        function showResults(score) {
+        function showResults(score, sectionScores) {
             // Hide form and show results
             document.getElementById('survey-form').style.display = 'none';
             document.getElementById('results').style.display = 'block';
@@ -770,6 +896,35 @@
                 <h2 class="category-title">${title}</h2>
                 <p class="category-description">${description}</p>
             `;
+            
+            // Add section scores display
+            const sectionScoresHTML = `
+                <div class="section-scores" style="margin-top: 30px;">
+                    <h2 style="text-align: center; color: #333; margin-bottom: 20px;">Section Scores Breakdown</h2>
+                    <div class="section-score">
+                        <h3>Section 1: Instructional Leadership</h3>
+                        <p style="font-size: 1.5em; color: #667eea;">${sectionScores['Instructional Leadership']}/44</p>
+                    </div>
+                    <div class="section-score">
+                        <h3>Section 2: Collaboration and Teamwork</h3>
+                        <p style="font-size: 1.5em; color: #667eea;">${sectionScores['Collaboration and Teamwork']}/40</p>
+                    </div>
+                    <div class="section-score">
+                        <h3>Section 3: Communication and Influence</h3>
+                        <p style="font-size: 1.5em; color: #667eea;">${sectionScores['Communication and Influence']}/16</p>
+                    </div>
+                    <div class="section-score">
+                        <h3>Section 4: Professional Growth and Learning</h3>
+                        <p style="font-size: 1.5em; color: #667eea;">${sectionScores['Professional Growth and Learning']}/16</p>
+                    </div>
+                    <div class="section-score">
+                        <h3>Section 5: Mentoring, Coaching, and Supporting Others</h3>
+                        <p style="font-size: 1.5em; color: #667eea;">${sectionScores['Mentoring, Coaching, and Supporting Others']}/16</p>
+                    </div>
+                </div>
+            `;
+            
+            categoryDiv.insertAdjacentHTML('afterend', sectionScoresHTML);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -825,7 +980,10 @@
             for (let i = 1; i <= 33; i++) {
                 headers.push(`Q${i}`);
             }
-            headers.push('Total Score');
+            headers.push('Total Score', 'Category');
+            headers.push('Instructional Leadership', 'Collaboration and Teamwork', 
+                        'Communication and Influence', 'Professional Growth and Learning',
+                        'Mentoring, Coaching, and Supporting Others');
             
             const csvContent = [
                 headers.join(','),
@@ -835,6 +993,22 @@
                         row.push(r[`q${i}`] || 0);
                     }
                     row.push(r.totalScore);
+                    
+                    // Add category
+                    let category;
+                    if (r.totalScore >= 116) category = 'Strong Teacher Leader';
+                    else if (r.totalScore >= 95) category = 'Developing Teacher Leader';
+                    else if (r.totalScore >= 70) category = 'Emerging Teacher Leader';
+                    else category = 'Beginning Teacher Leader';
+                    row.push(`"${category}"`);
+                    
+                    // Add section scores
+                    row.push(r['Instructional Leadership'] || 0);
+                    row.push(r['Collaboration and Teamwork'] || 0);
+                    row.push(r['Communication and Influence'] || 0);
+                    row.push(r['Professional Growth and Learning'] || 0);
+                    row.push(r['Mentoring, Coaching, and Supporting Others'] || 0);
+                    
                     return row.join(',');
                 })
             ].join('\n');
@@ -863,6 +1037,7 @@
             const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
             
             if (GOOGLE_SCRIPT_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')) {
+                console.log('Google Sheets integration not configured');
                 return;
             }
             
@@ -878,6 +1053,9 @@
             .then(response => response.json())
             .then(result => {
                 console.log('Data saved to Google Sheets:', result);
+                if (result.result === 'success') {
+                    console.log('Results will be emailed to:', data.email);
+                }
             })
             .catch(error => {
                 console.error('Error saving to Google Sheets:', error);
